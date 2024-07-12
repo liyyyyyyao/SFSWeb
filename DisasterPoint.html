@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DisasterPoint</title>
+    <link rel="stylesheet" href="css/DisasterPoint.css" />
+    <script type="text/javascript"src="https://api.map.baidu.com/api?v=3.0&ak=d19wKrQSosNyudn49XKMVmqfwplbOSjW"></script>
+</head>
+<body>
+    <header>
+        <h1>灾害点地图</h1>
+        <button class="mybutton" onclick="window.location.href='index.html'">返回首页</button>
+    </header>
+    <div class="mapBox" id="mapContainer"></div>
+</body>
+</html>
+<script type="text/javascript">
+    //地图初始化
+    var map=new BMap.Map("mapContainer");
+    //添加灾害点
+    var points = [
+        new BMap.Point(115.8229022,39.6755975),
+        new BMap.Point(115.8162589,39.67379361),
+        new BMap.Point(115.8128486,39.67442556),
+        new BMap.Point(115.8228139,39.67529528),
+        new BMap.Point(115.8165831,39.66401889),
+        new BMap.Point(115.8183619,39.66719056),
+        new BMap.Point(115.8201689,39.66835889),
+        new BMap.Point(115.8203681,39.66876306),
+        new BMap.Point(115.8210444,39.66972389),
+        new BMap.Point(115.8213631,39.67025889),
+        new BMap.Point(115.8211142,39.67055222),
+        new BMap.Point(115.8223639,39.67532111),
+        new BMap.Point(115.8222667,39.67439806),
+        new BMap.Point(115.82025,39.6763),
+        new BMap.Point(115.8173089,39.66506306)
+    ];
+    var opts={
+        width:300,
+        height:200,
+        title:"灾害点",
+    }
+    var contents=new Array(
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>红桥庵上方崩塌</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/红桥庵上方崩塌.jpg' width='300' height='225' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>橡树林东北侧落石</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/橡树林东北侧落石.jpg' width='300' height='400' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>云水洞东侧崩塌</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/云水洞东侧崩塌.jpg' width='300' height='400' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>兜率寺东南落石</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/兜率寺东南落石.jpg' width='300' height='225' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>管理处泥石流</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/管理处泥石流.jpg' width='300' height='225' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>东门地质灾害隐患点</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/东门地质灾害隐患点.jpg' width='300' height='225' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>青檀谷上方对侧河岸崩塌</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/青檀谷上方对侧河岸崩塌.jpg' width='300' height='225' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>石桥泥石流</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/石桥泥石流.jpg' width='300' height='225' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>古檀崩塌</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/古檀崩塌.jpg' width='300' height='400' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>大型板状交错层理处崩塌</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/大型板状交错层理处崩塌.jpg' width='300' height='400' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>断桥2012泥石流</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/断桥2012泥石流.jpg' width='300' height='225' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>红桥庵崩塌处</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/红桥庵崩塌处.jpg' width='300' height='400' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>塔院旁崩塌</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/塔院旁崩塌.jpg' width='300' height='225' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>兜率寺下方崩塌</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/兜率寺下方崩塌.jpg' width='300' height='400' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        "<div class='infoScroll' style='height:200px;overflow-y:scroll;font-size:0.2rem;margin-top:1vh;'>"
+        +"<p style='margin:0;line-height:1.5;font-size:15px;text-indent:2em;text-align:center'>东沟泥石流</p>"
+        +"<img style='float:right;margin:4px' id='imgDemo' src='image/东沟泥石流.jpg' width='300' height='225' onclick='img.classList.toggle('zoomed')'/>"
+        +"</div>",
+        )
+    //地图配置
+    map.centerAndZoom(new BMap.Point(115.822,39.672),15);
+    map.enableScrollWheelZoom();
+    map.addControl(new BMap.ScaleControl());
+    map.addControl(new BMap.NavigationControl());
+    map.addControl(new BMap.MapTypeControl());
+
+    //坐标转换、添加点位内容
+    var total = 0; // 总记录数
+    var markers = [];
+    var infoWindows = [];
+    var groupCount = Math.ceil(points.length / 10);
+    var globalIndex = 0; // 用于追踪每个点的确切位置
+    var icon = new BMap.Icon('image/崩塌.jpg', new BMap.Size(20, 26), {  
+        anchor: new BMap.Size(10, 25),
+    });
+
+    /*由于百度地图提供的转为BD09坐标接口存在点位数量限制，
+    将坐标分为十个一组循环进栈
+    */
+    for (var i = 0; i < groupCount; i++) { // 外层循环，有多少组十条
+        var pos = [];
+        for (var j = 0; j < 10; j++) { // 内层循环，每组十条
+            if (total < points.length) { // 不超过总记录数结束
+                var point = new BMap.Point(points[total].lng, points[total].lat);
+                pos.push(point);
+                total++;
+            }
+        }
+
+        var convertor = new BMap.Convertor();
+        
+        /*通过JavaScript的闭包特性和百度地图API提供的TranslateCallback回调函数，
+        进行异步操作循环添加每个灾害点的位置和信息
+        */
+        (function(startIndex, posArray) {
+            convertor.translate(posArray, 1, 5, function(data) {
+                if (data.status === 0) {
+                    for (var k = 0; k < data.points.length; k++) {
+                        var currentIndex = startIndex + k;
+                        markers[currentIndex] = new BMap.Marker(data.points[k]);
+                        map.addOverlay(markers[currentIndex]);
+                        infoWindows[currentIndex] = new BMap.InfoWindow(contents[currentIndex], opts);
+                        (function(index, point) {
+                            markers[index].addEventListener('click', function() {
+                                map.openInfoWindow(infoWindows[index], point);
+                            });
+                        })(currentIndex, data.points[k]);
+                    }
+                }
+            });
+        })(globalIndex, pos); // 捕获当前组的起始索引和坐标数组
+        globalIndex += pos.length;
+    }
+
+    
+</script>
+

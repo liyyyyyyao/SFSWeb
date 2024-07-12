@@ -1,0 +1,139 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.navbar {
+  overflow: hidden;
+  background: rgba(124,101,60,0.58);
+  box-shadow: 0px 2px 7px 0px rgba(4,3,0,0.62);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 3rem;
+}
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.page{
+  display: flex; /* 使用flex布局 */
+  height: 100vh; /* 设置每个页面的高度为视口高度，使其占据整个屏幕 */
+  margin: 0;
+  padding: 10px;
+  overflow-y: scroll; /* 启用垂直滚动条 */
+  scroll-behavior: smooth; /* 平滑滚动效果 */
+}
+.page h1 {
+  font-size: 2.5rem;
+  color: white;
+  text-align: center;
+}
+.page::-webkit-scrollbar{
+  display: none;
+}
+.page1 {
+  height: 100vh; /* 设置每个页面的高度为视口高度，使其占据整个屏幕 */
+  overflow-y: scroll; /* 启用垂直滚动条 */
+  scroll-behavior: smooth; /* 平滑滚动效果 */
+  background: url(../image/sfs1.jpg) no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  bottom: 40rem;
+  color: white;
+}
+.page1::-webkit-scrollbar{
+  display: none;
+}
+.page1 h1:nth-child(1) {
+  text-align: center;
+  font-size: 4rem;
+  margin-top: 15rem;
+}
+.page1 h1:nth-child(2) {
+  text-align: center;
+  font-size: 2rem;
+}
+.page1 h1:nth-child(3) {
+  text-align: center;
+  font-size: 1.5rem;
+}
+.page1 h1:nth-child(4) {
+  text-align: center;
+  font-size: 1.5rem;
+}
+.page1 h1:nth-child(5) {
+  text-align: center;
+  font-size: 1rem;
+}
+.page1 h1:nth-child(6) {
+  text-align: center;
+  font-size: 1rem;
+}
+.page.page2 {           
+  background: url(../image/sfs2.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+.page.page3 {
+  background: url(../image/sfs3.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+.page.page4 {
+  background: url(../image/sfs4.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+.page.page5 {
+  background: url(../image/sfs5.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.background5{
+  margin: 0 auto;
+  width: 800px;
+  height: 700px;
+  background-color:rgba(168, 168, 167, 0.7);
+}
+
+.content {
+  width: 100%;
+  text-align: center;
+}
+
+.photo{
+  margin: 0;
+  width: 700px;
+  height: 524px;
+}
+
+/* .img1样式调整 */
+
+  /* 定义渐变 */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* 应用渐变和动画到文字 */
+  .fadeInText {
+    animation: fadeIn 2s ease-in-out; /* 使用2秒的动画时间 */
+  }

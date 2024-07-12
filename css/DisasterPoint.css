@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+header {
+    position: relative;
+    height: 3rem;
+    background-color: rgba(124,101,60,0.58);
+    box-shadow: 0px 2px 7px 0px rgba(4,3,0,0.62);
+}
+header h1 {
+    color: #fff;
+    text-align: center;
+    font-size: 1.875rem;
+    line-height: 3.15rem;
+    margin-top: 0;
+    margin-bottom: 7px;
+}
+.mybutton{
+    position:absolute; /* 保持固定定位 */
+    top: 10%; /* 使用百分比来调整顶部距离 */
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 999; /* 确保按钮在其他内容之上 */
+}
+.mapBox{
+    margin-top: 7px;
+    position: fixed;
+    width: 100%;
+    height: 500px;
+}
+.infoScroll::-webkit-scrollbar{
+    width: 4px;
+}
+.infoScroll::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background: rgb(0, 0, 0, 0.2);
+}
+.infoScroll::-webkit-scrollbar-track{
+    border-radius: 0;
+    background: white;
+}
+.zoomed{
+    transform: scale(2);
+}
