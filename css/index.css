@@ -32,9 +32,9 @@ body {
 }
 .page{
   display: flex; /* 使用flex布局 */
-  height: 100vh; /* 设置每个页面的高度为视口高度，使其占据整个屏幕 */
+  height: 50vh; /* 设置每个页面的高度为视口高度，使其占据整个屏幕 */
   margin: 0;
-  padding: 10px;
+  padding: 0;
   overflow-y: scroll; /* 启用垂直滚动条 */
   scroll-behavior: smooth; /* 平滑滚动效果 */
 }
@@ -97,6 +97,7 @@ body {
 .page.page4 {
   background: url(../image/sfs4.jpg) no-repeat center center fixed;
   background-size: cover;
+  height: 100vh;
 }
 .page.page5 {
   background: url(../image/sfs5.jpg) no-repeat center center fixed;
@@ -119,6 +120,51 @@ body {
   margin: 0;
   width: 700px;
   height: 524px;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 50vh;
+}
+.left {
+  flex: 1;
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  box-sizing: border-box;
+}
+.right {
+  flex: 1;
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  box-sizing: border-box;
+}
+.left img{
+  padding: 0;
+  max-width: 100%;
+  height: auto;
+}
+.right img {
+  max-width: 100%;
+  height: auto;
+}
+.button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.button:hover {
+  background-color: #0056b3;
 }
 
 /* .img1样式调整 */
